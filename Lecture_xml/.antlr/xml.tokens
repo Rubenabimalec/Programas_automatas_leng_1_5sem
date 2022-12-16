@@ -1,0 +1,12 @@
+TEXT=1
+MAY=2
+MEN=3
+IGUAL=4
+COMILLA=5
+SLASH=6
+ESPACIOS=7
+'<'=2
+'>'=3
+'='=4
+'"'=5
+'/'=6

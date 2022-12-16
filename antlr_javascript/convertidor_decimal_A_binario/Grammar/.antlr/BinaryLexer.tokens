@@ -1,0 +1,10 @@
+T__0=1
+T__1=2
+CONVERTIR=3
+CLG=4
+BINARY=5
+SPACES=6
+'('=1
+')'=2
+'>'=3
+'console.log'=4

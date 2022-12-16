@@ -1,0 +1,75 @@
+Comandos para nuevo proyecto:
+npm install antlr4 --save --dev --carpeta reiz
+antlr -Dlanguage=JavaScript expresion.g4--> carpeta raiz
+antlr -Dlanguage=JavaScript -o rubenjs -visitor -no-listener grammar/Nombre.g4:Comando para formar una carpeta que se llame rubenjs dentro de la cual se genera el parser,visitor y lexer ---> Tambien elimina y restaura el visitor a su estado inicial
+Archivo Package.json debe quedar de la siguiente manera
+{
+  "dependencies": {
+    "antlr4": "^4.11.0"
+  },
+  "type":"module"  //agragar esta parte
+
+}
+----------------------------------------------------------------------------------------
+Programa calculadora digital:
+
+// Generated from java-escape by ANTLR 4.11.1
+// jshint ignore: start
+import antlr4 from "antlr4";
+import CalculatorParser from "./CalculatorParser.js";
+
+// This class defines a complete generic visitor for a parse tree produced by CalculatorParser.
+
+export default class CalculatorVisitor extends antlr4.tree.ParseTreeVisitor {
+  // Visit a parse tree produced by CalculatorParser#file.
+  visitFile(ctx) {
+    console.log("estoy en file");
+    console.log(this.visit(ctx.expr()));
+    return null;
+  }
+
+  // Visit a parse tree produced by CalculatorParser#timesDiv.
+  visitTimesDiv(ctx) {
+    console.log("estoy en MULT/DIV");
+    const NumA = this.visit(ctx.expr(0));
+    const NumB = this.visit(ctx.expr(1));
+    if (ctx.operation.type === CalculatorParser.TIMES) {
+      return NumA * NumB;
+    }
+    return NumA / NumB;
+    return this.visitChildren(ctx);
+  }
+
+  // Visit a parse tree produced by CalculatorParser#number.
+  visitNumber(ctx) {
+    //console.log(typeof ctx.NUMBER().getText());
+    return Number(ctx.NUMBER().getText());
+  }
+
+  // Visit a parse tree produced by CalculatorParser#plusSubtraction.
+  visitPlusSubtraction(ctx) {
+    console.log("estoy en sum/res");
+    const NumA = this.visit(ctx.expr(0));
+    const NumB = this.visit(ctx.expr(1));
+    if (ctx.operation.type === CalculatorParser.PLUS) {
+      return NumA + NumB;
+    }
+    return NumA - NumB;
+    //const NumC = NumA + NumB;
+    //console.log(this.visit(ctx.expr()));
+
+    return this.visitChildren(ctx);
+  }
+}
+
+
+
+--------------------------------------------------------------------
+notificaciones@netec.com - remitente del formato de registro examen de certificación
+documentacion@netec.com - remitente de la constancia de participación
+jazmin.soriano@netec.com.mx - Asesor comercial dudas, comentarios
+---------------------------------------------------------------------------
+IMPORTANTE tener en cuenta : Una vez su institución les comunique que han sido elegidos 
+para el examen de certificación , les llegara un correo de Testing Center con un formato de 
+registro, es muy importante lo llenen y sigan las instrucciones para agendar su examen antes 
+del 21 de noviembre
